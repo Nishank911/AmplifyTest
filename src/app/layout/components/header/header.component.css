@@ -1,0 +1,44 @@
+/* //$topnav-background-color: #222; */
+/* topnav-background-color: white; */
+
+/* Bootstrap 4 text input with search icon */
+
+.has-search .form-control {
+  padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+  position: fixed;
+  z-index: 1;
+  display: block;
+  width: 2.375rem;
+  /* // height: 2.375rem; */
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
+}
+.sign-out {
+  color: red !important;
+  width: 10px !important;
+}
+/* :host {
+    .navbar {
+        background-color: $topnav-background-color;
+
+        .navbar-brand {
+            color: black;
+            
+        }
+
+        .nav-item > a {
+            color:black;
+            margin-top: -6%;
+
+            &:hover {
+                color: #999;
+            }
+        }
+    }
+
+} */

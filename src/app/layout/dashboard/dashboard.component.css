@@ -1,0 +1,159 @@
+.heading {
+  color: white;
+  font-size: 17px;
+  margin-top: 3.7%;
+  width: 100%;
+  padding-left: 3.8%;
+  margin-left: 3%;
+}
+.header {
+  background: #006fba;
+  position: sticky;
+  margin-top: 1%;
+  height: 80px;
+}
+.body {
+  margin-left: 6%;
+  margin-right: 6%;
+  margin-top: 1%;
+}
+.modal.left .modal-dialog {
+  position: fixed;
+  right: 0;
+  margin: auto;
+  max-width: 45% !important;
+  height: 100%;
+  -webkit-transform: translate3d(0%, 0, 0);
+  -ms-transform: translate3d(0%, 0, 0);
+  -o-transform: translate3d(0%, 0, 0);
+  transform: translate3d(0%, 0, 0);
+}
+
+.modal.left .modal-content {
+  height: 100%;
+}
+
+.modal.right.fade .modal-dialog {
+  -webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
+  -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
+  -o-transition: opacity 0.3s linear, left 0.3s ease-out;
+  transition: opacity 0.3s linear, left 0.3s ease-out;
+}
+ul.timeline {
+  list-style-type: none;
+  position: relative;
+}
+ul.timeline:before {
+  content: " ";
+  background: #d4d9df;
+  display: inline-block;
+  position: absolute;
+  left: 29px;
+  width: 2px;
+  height: 100%;
+  z-index: 400;
+}
+ul.timeline > li {
+  margin: 20px 0;
+  padding-left: 20px;
+}
+ul.timeline > li:before {
+  content: " ";
+  background: white;
+  display: inline-block;
+  position: absolute;
+  border-radius: 50%;
+  border: 3px solid #22c0e8;
+  left: 20px;
+  width: 20px;
+  height: 20px;
+  z-index: 400;
+}
+.form-control:focus {
+  outline: 0 !important;
+  border-color: initial;
+  box-shadow: none;
+}
+.navbutton {
+  border: none;
+  background-color: white;
+  font-weight: bold;
+  border-radius: 0px;
+  width: 70px;
+}
+.activeclass {
+  border-bottom: 5px solid #fed400;
+}
+*:focus {
+  outline: 0 !important;
+}
+.tableRow {
+  width: 100% !important;
+}
+table {
+  margin-left: 12px !important;
+  width: 98%;
+}
+.row {
+  width: 100%;
+}
+.card {
+  max-height: auto;
+  min-height: 400px;
+  padding-bottom: 30px;
+}
+.tableCard {
+  width: 98%;
+}
+
+.greenlabel {
+  color: #32ad6f;
+  font-size: 12px;
+  font-family: "Lato", sans-serif;
+  font-weight: bold;
+  line-height: 15px;
+  border: 1px solid #59aa74;
+  background-color: #d5efe2;
+  border-radius: 4px;
+  padding: 5px;
+  text-transform: uppercase;
+  width: 92px;
+  height: 25px;
+  text-align: center;
+}
+
+.redlabel {
+  color: #d15900;
+  font-size: 12px;
+  font-family: "Lato", sans-serif;
+  font-weight: bold;
+  line-height: 15px;
+  border: 1px solid #c36025;
+  background-color: #ffdac4;
+  border-radius: 4px;
+  padding: 5px;
+  text-transform: uppercase;
+  width: 92px;
+  height: 25px;
+  text-align: center;
+}
+
+.amberlabel {
+  color: #eba834;
+  font-size: 12px;
+  font-family: "Lato", sans-serif;
+  font-weight: bold;
+  line-height: 15px;
+  border: 1px solid #eba834;
+  background-color: #fce977;
+  border-radius: 4px;
+  padding: 5px;
+  text-transform: uppercase;
+  width: 92px;
+  height: 25px;
+  text-align: center;
+}
+
+.modifyButton {
+  font-size: 14px;
+}

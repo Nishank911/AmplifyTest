@@ -1,0 +1,97 @@
+<div *ngIf='tokenID!=null||tokenID!=""' [class]="authState!='signedin'?'':'qualityInspection'">
+    <div class="header " >
+        <div class="row"> 
+          <h5 class="heading">
+            <i class="fa fa-arrow-circle-left  p-2" style="font-size:25px; " routerLink="/dashboard" aria-hidden="true"></i> &nbsp; 
+            QUALITY INSPECTION AT CLOUD</h5>
+        </div>
+    </div>
+    <div class="body">
+    <div class="row">
+    <div class=".col-xl-12">
+        <div class="card mb-3">
+            <div class="card-header bg-white ">
+                <h4 class="font-weight-bold">Create Manual Defects</h4>
+            </div>
+            <div class="card-body">
+                <form  #manualDefect="ngForm" (ngSubmit)="submit(datainput)">
+                    <div class="form-row font-weight-bold">
+                      <div class="col-md-4 mb-3">
+                        <label for="validationDefault01">Defect ID</label>
+                        <input type="text" class="form-control" name="Defect_ID" id="validationDefault01" [(ngModel)]="datainput.Defect_ID"  readonly required />
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="validationDefault02">Engine No.</label>
+                        <input type="text" class="form-control" name="Engine No" id="validationDefault02" [(ngModel)]="datainput.Product_Number" placeholder="Enter Engine No.." required>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="validationDefaultUsername">Model</label>
+                        <input type="text" class="form-control" name="Model" id="validationDefaultUsername" [(ngModel)]="datainput.Model" placeholder="Enter Model.." aria-describedby="inputGroupPrepend2" required>
+                      </div>
+                    </div>
+                    <div class="form-row font-weight-bold">
+                      <div class="col-md-4 mb-3">
+                        <label for="validationDefault03">Surface</label>
+                        <select class="custom-select my-1 mr-sm-2" [(ngModel)]="datainput.Surface_Name" name="Surface" id="inlineFormCustomSelectPref">
+                            <option value="Top">Top</option>
+                            <option value="Bottom">Bottom</option>
+                            <option value="Left">Left</option>
+                            <option value="Right">Right</option>
+                          </select>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="validationDefault04">Detect Category</label>
+                        <select class="custom-select my-1 mr-sm-2" [(ngModel)]="datainput.Defect_Type" name="Defect_Category" id="inlineFormCustomSelectPref">
+                          <option value="Porosity">Porosity</option>
+                          <option value="scratch">Scratches</option>
+                          <option value="Dents">Dents</option>
+                          <option value="Burrs">Burrs</option>
+                          <option value="Scuff-Marks">Scuff Marks</option>
+                        </select>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="validationDefault05">Line</label>
+                        <input type="text" class="form-control" id="validationDefault05" name="Line" [(ngModel)]="datainput.Line_Number" placeholder="Enter Line.." required>
+                      </div>
+                    </div>
+                    <div class="form-row font-weight-bold">
+                        <div class="col-md-4 mb-3">
+                          <label for="validationDefault01">Date</label>
+                          <input type="datetime-local" class="form-control" [(ngModel)]="datainput.Timestamp" name="Date" id="validationDefault01"  required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                          <label for="validationDefault02">Authencity</label>
+                          <select class="custom-select my-1 mr-sm-2" [(ngModel)]="datainput.Authenticity" name="Authenticity" id="inlineFormCustomSelectPref">
+                            <option value="Pass">Pass</option>
+                            <option value="Fail">Fail</option>
+                          </select>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                          <label for="validationDefaultUsername">Status</label>
+                          <select class="custom-select my-1 mr-sm-2" [(ngModel)]="datainput.Status" name="Status" id="inlineFormCustomSelectPref">
+                            <option value="open">open</option>
+                            <option value="in-progress">in-progress</option>
+                            <option value="close">close</option>
+                          </select>
+                        </div>
+                        
+                        
+                      </div>
+                      <div class="form-row font-weight-bold">
+                        <div class="col-md-4 mb-3">
+                          <label>Defect Image</label>
+                          <input #Image type="file" (change)="handleFileInput($event)" class="form-control-file"/>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                          <img width="100px" *ngIf="imageUrl" [src]="imageUrl" class="image" alt="" height="100px" >
+                          <img width="100px" height="100px" *ngIf="!imageUrl" src="../../../assets/drag-drop-upload-3.gif" alt="" class="position-center">
+                        </div>
+                      </div>
+                    <button class="btn btn-primary" type="submit">Save</button>
+                    <button class="text-info ml-2 btn btn-light" type="reset" value="Reset">Reset</button>
+                  </form>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>

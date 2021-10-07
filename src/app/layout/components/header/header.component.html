@@ -1,0 +1,32 @@
+
+    <div *ngIf="tokenID!=null" class="navbar navbar-expand-lg fixed-top" style="height: 8%; background-color: white;">
+        <a class="navbar-brand" href="#">
+            <img src="../../../../assets/LTI_Lets_solve_logo_png/LTI_Lets_solve_logo_png.png" width= "60px" alt=""> 
+        <a class="font-weight-bold ml-2 text-decoration-none " style="font-size: 17px;color: black;" routerLink="./dashboard">QUALITY INSPECTION</a>
+        </a> 
+            <ul class="navbar-nav ml-auto">
+                <li class="font-weight-bold" > 
+                    <i class="fa fa-refresh mr-4 " aria-hidden="true" onClick="window.location.reload();"></i>
+                    <a class="mr-4 text-decoration-none" style="color: black;" routerLink="./Quality-Inspection-At-Cloud">QUALITY INSPECTION AT CLOUD</a> 
+                    <a class="mr-4 text-decoration-none" style="color: black;" href="http://13.232.241.76:8857/#/login" target="_blank">USER MANAGEMENT</a>
+                    <a class="mr-4 text-decoration:none">HELP</a>
+                    
+                    <i class="fa fa-bell mr-4" aria-hidden="true"></i>
+                </li>
+                <li class="nav-item dropdown" ngbDropdown>
+                    <a class="nav-link font-weight-bold" href="javascript:void(0)" ngbDropdownToggle style="text-transform: uppercase;">
+                        <i class="fa fa-user-circle-o mr-2 fa-1x" aria-hidden="true"></i>{{username}}  <strong class="caret"></strong>
+                    </a>
+                    <div class="dropdown-menu-right" ngbDropdownMenu >
+                        <a class="dropdown-item" href="javascript:void(0)">
+                            <i class="fa fa-fw fa-user" aria-hidden="true"></i> {{ 'Profile' }}
+                        </a>
+                        <a [routerLink]="['/login']" class="dropdown-item">
+                            <i class="fa fa-fw fa-power-off" aria-hidden="true"></i><span (click)="signOut()">Sign Out</span>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+    
+    </div>
+    

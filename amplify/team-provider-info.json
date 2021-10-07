@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-qualityinspectionapp-dev-233357-authRole",
+      "UnauthRoleArn": "arn:aws:iam::208360692836:role/amplify-qualityinspectionapp-dev-233357-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::208360692836:role/amplify-qualityinspectionapp-dev-233357-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-qualityinspectionapp-dev-233357-deployment",
+      "UnauthRoleName": "amplify-qualityinspectionapp-dev-233357-unauthRole",
+      "StackName": "amplify-qualityinspectionapp-dev-233357",
+      "StackId": "arn:aws:cloudformation:us-east-1:208360692836:stack/amplify-qualityinspectionapp-dev-233357/cc13c550-2218-11ec-84e9-0e8e84c0d477",
+      "AmplifyAppId": "d2ncvf63dh7vse"
+    },
+    "categories": {
+      "auth": {
+        "qualityinspectionapp3f69a7b5": {}
+      }
+    }
+  }
+}

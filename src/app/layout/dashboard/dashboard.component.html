@@ -1,0 +1,320 @@
+<ngx-spinner></ngx-spinner>
+<div *ngIf='tokenID!=null||tokenID!=""' [class]="authState!='signedin'?'':'dashboard'">
+    <div [hidden]="chartLoading">
+        <div class="row header navbar-fixed">
+            <div class="">
+                <label class="heading">DASHBOARD</label>
+            </div>
+        </div>
+        <div class="body">
+        <div class="row">
+            <div class="col-xl-6 text-xs-center">
+                <div class="card mb-3" >
+                    <div class="card-header bg-white font-weight-bold ">
+                        <div class="row">
+                        <div class="col">
+                        <label>Defects Overview</label>
+                        </div>
+                        <div class="col text-right">
+                            <a>
+                                <button class="navbutton" (click)=setActiveDiv(3) [class]=" today ? 'activeclass' : '' ">
+                                Today</button></a>
+                            <a class="ml-1">
+                                <button class="navbutton" (click)=setActiveDiv(1) [class]=" week ? 'activeclass' : '' ">
+                                1 Week</button></a>
+                            <a class="ml-1">
+                                <button class="navbutton" (click)=setActiveDiv(2) [class]=" month ? 'activeclass' : '' ">
+                                1 Month</button></a>
+                        </div>
+                    </div>
+                    </div>
+                    
+                    <div class="row no-gutters" *ngIf="today">
+                    
+                    <div *ngIf="doughnutChartDataToday[0].length!=0" class="col-xl-6">
+                    <canvas baseChart class="mt-3"  height="6" width="7" [data]="doughnutChartDataToday" 
+                    [labels]="doughnutChartLabels" [chartType]="doughnutChartType" 
+                    [plugins]="doughnutChartPlugins" 
+                    ></canvas>
+                    <!-- (chartHover)="chartHovered($event)" -->
+                    <!-- (chartClick)="chartClicked($event)" [chartOptions]="doughnutChartOption" -->
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Average Detects per day</li>
+                                <li class="list-group-item">Cost of quality</li>
+                                <li class="list-group-item">Average time per detect</li>
+                                <li class="list-group-item">Average No. of part</li>
+                            </ul>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- ///Week Doughnut -->
+                    <div class="row no-gutters" *ngIf="week">
+                    
+                    <div *ngIf="doughnutChartDataWeek[0].length!=0" class="col-xl-6">
+                    <canvas baseChart class="mt-3"  height="6" width="7" [data]="doughnutChartDataWeek" 
+                    [labels]="doughnutChartLabels" [chartType]="doughnutChartType" 
+                    [plugins]="doughnutChartPlugins" 
+                    ></canvas>
+                    <!-- (chartHover)="chartHovered($event)" -->
+                    <!-- (chartClick)="chartClicked($event)" [chartOptions]="doughnutChartOption" -->
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Average Detects per day</li>
+                                <li class="list-group-item">Cost of quality</li>
+                                <li class="list-group-item">Average time per detect</li>
+                                <li class="list-group-item">Average No. of part</li>
+                            </ul>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- ////Month DataDoughnut -->
+                    <div class="row no-gutters" *ngIf="month">
+                    
+                    <div *ngIf="doughnutChartDataMonth[0].length!=0" class="col-xl-6">
+                    <canvas baseChart class="mt-3"  height="6" width="7" [data]="doughnutChartDataMonth" 
+                    [labels]="doughnutChartLabels" [chartType]="doughnutChartType" 
+                    [plugins]="doughnutChartPlugins" 
+                    ></canvas>
+                    <!-- (chartHover)="chartHovered($event)" -->
+                    <!-- (chartClick)="chartClicked($event)" [chartOptions]="doughnutChartOption" -->
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Average Detects per day</li>
+                                <li class="list-group-item">Cost of quality</li>
+                                <li class="list-group-item">Average time per detect</li>
+                                <li class="list-group-item">Average No. of part</li>
+                            </ul>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 text-xs-center">
+                <div class="card mb-3" >
+                    <div class="card-header bg-white font-weight-bold">
+                        <div class="row">
+                            <div class="col">
+                                <label>Production vs Defects</label>
+                            </div>
+                        <div class="col text-right">
+                            <a>
+                                <button class="navbutton" (click)=setActiveDivChart(1) [class]=" chartweek ? 'activeclass' : '' ">
+                                1 Week</button></a>
+                            <a class="ml-4">
+                                <button class="navbutton" (click)=setActiveDivChart(2) [class]=" chartmonth ? 'activeclass' : '' ">
+                                1 Month</button></a>
+                        </div>
+                    </div>
+                    </div>
+                        <div class="card-body" *ngIf="chartweek">
+                            <chart [type]="type" [data]="data" [options]="options"></chart>
+                        </div>
+                        <div class="card-body" *ngIf="chartmonth">
+                            <chart [type]="type"  [data]="data1" [options]="options"></chart>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <div class=".col-xl-12">
+            <div  class="card tableCard mb-3">
+            <div class="row">
+                <div class="col col-3">
+                    <h4 class=" pl-4 mt-4 font-bold">Defect List</h4>
+                </div> 
+                <div class="mt-2 col col-xs-9 p-3">
+                    <form #filterOptions="ngForm">
+                        <input type="text" name="search" #txt  name="searchText" class="p-1"  placeholder="Search" > 
+                        <label class="ml-2 font-weight-bold">DATE FILTER</label>
+                        <input name="dt" [(ngModel)]="dt" type="datetime-local" class="ml-2"  >
+                        <label class="ml-2 font-weight-bold">To</label>
+                        <input name="enddt" [(ngModel)]="enddt" type="datetime-local" class="ml-2"  >
+                        <button [disabled] ="!resetButtonBool" class="btn amberlabel ml-2 modifyButton"  (click)=" search(txt.value)">Modify</button>
+                        <button [disabled]="resetButtonBool" class=" ml-2 btn redlabel" style="font-size: 14px;" type="reset" (click)="reset()" value="Reset">Reset</button>
+                    </form>
+                </div>   
+            </div>
+            <div  class="row ml-auto mr-auto tableRow">
+            <table class="table table-bordered table-hover table-striped ml-2 mr-2" aria-describedby="mydesc">
+                <thead class="thead-light ">
+                    <tr>
+                    <th class="padding-0" scope="col">Defect ID</th>
+                    <th class="padding-0" scope="col">Engine No.</th>
+                    <th class="padding-0" scope="col">Model</th>
+                    <th class="padding-0" scope="col">Surface</th>
+                    <th class="padding-0" scope="col">Defect Category</th>
+                    <th class="padding-0" scope="col">Line</th>
+                    <th class="padding-0" scope="col">Date</th>
+                    <th class="padding-0" scope="col">Authencity</th>
+                    <th class="padding-0" scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let qualityInspectionData of params;index as i" >
+                    <th scope="row" >{{qualityInspectionData.Defect_ID}}</th>
+                    <td>{{qualityInspectionData.Product_Number}}</td>
+                    <td>{{qualityInspectionData.Model}}</td>
+                    <td>{{qualityInspectionData.Surface_Name}}</td>
+                    <td>{{qualityInspectionData.Defect_Type}}</td>
+                    <td>{{qualityInspectionData.Line_Number}}</td>
+                    <td>{{qualityInspectionData.Timestamp|date:'fullDate'}}</td>
+                    <td>{{qualityInspectionData.Authenticity}}</td>
+                    <td data-toggle="modal" data-target="#exampleModal1" class="text-primary"><button (click)="showDefectInfo(i)" [class]="qualityInspectionData.Status=='close'?buttonCSS[0]:qualityInspectionData.Status=='open'?buttonCSS[2]:buttonCSS[1]" class="btn btn-block">{{qualityInspectionData.Status}}</button></td>
+        <!-- <ngx-spinner></ngx-spinner> -->
+        <div class="modal left fade p-0"  id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"   aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" >
+                <div class="card-header text-white" style="background-color:#006FBA">
+                    <div class=" row ">
+                        <div class="col col-xl-6">  
+                        <h5>Defect Information</h5>     
+                        </div>  
+                        <div class="col col-xs-9 text-right">
+                            <button (click)="modalClose()" type="button" class="close " aria-label="Close" data-dismiss="modal">
+                                <i class="fa fa-times text-white" aria-hidden="true"></i>
+                                </button>
+                        </div>
+                    </div>      
+                </div>
+                <div class="card-body" style="overflow-y: scroll;">
+                <div class="row">
+                    <div class="col-xl-3">
+                        <h6 class="font-weight-bold">DEFECT ID</h6>
+                        <a>{{modalData?.Defect_ID}}</a>
+                    </div>
+                    
+                    <div class="col-xl-3">
+                        <h6 class="font-weight-bold">ENGINE NO.</h6>
+                        <a>{{modalData?.Product_Number}}</a>    
+                    </div>
+                    <div class="col-xl-3">
+                        <h6 class="font-weight-bold">SURFACE</h6>
+                        <a>{{modalData?.Surface_Name}}</a>
+                        
+                    </div>
+                    <div class="col-xl-3">
+                        <h6 class="font-weight-bold">MODEL</h6>
+                        <a>{{modalData?.Model}}</a>
+                        
+                    </div>
+                </div><br/>
+                <div class="row">
+                    <div class="col-xl-3">
+                        <h6 class="font-weight-bold">DEFECT CATEGORY</h6>
+                        <a>{{modalData?.Defect_Type}}</a>
+                        
+                    </div>
+                    <div class="col-xl-3">
+                        <h6 class="font-weight-bold">LINE</h6>
+                        <a>{{modalData?.Line_Number}}</a>
+                        
+                    </div>
+                    <div class="col-xl-3">
+                        <h6 class="font-weight-bold">AUTHENCITY</h6>
+                        <a>{{modalData?.Authenticity}}</a>
+                        
+                    </div>
+                    <div class="col-xl-3">
+                        <h6 class="font-weight-bold">DATE</h6>
+                        <a>{{modalData?.Timestamp|date:'fullDate'}}</a>
+                        
+                    </div>
+                </div><br/>
+                <div class="row">
+                    <div class="col-xl-3">
+                        <h6 class="font-weight-bold"><label for="status">STATUS</label></h6>
+                        <p style="font-size: medium;" class="txt-danger">{{modalData?.Status}}</p>
+                        <!-- <p>{{msg}}</p> -->
+                        <!-- <button class="btn btn-danger">{{modalData?.Status}}</button> -->
+                    </div>
+                </div><br/>
+                <div class="row">
+                    <h6 class="font-weight-bold"><label for="status">UPDATE STATUS</label></h6>
+                    <div class="col-xl-6">
+                        <select  class="btn btn-block"  id="status" (change)="getstatus($any($event.target).value)">
+                            <option disabled selected>--Update Status--</option>
+                            <option *ngFor="let type of types" [value]="type.value">{{type.show}}</option>
+                        </select>
+                    </div>
+                    <div class="col-xl-3">
+                        <button class="btn btn-danger" (click)="submitstatus(modalData)">Submit</button>
+                    </div>
+                </div><br>
+                <!-- //spinner -->
+                <div [hidden]="spinnerBool">
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+                    <!-- //else part -->
+                <div [hidden]="!spinnerBool">
+                    <div class="row">
+                        <label class="font-weight-bold">Defect Image</label>
+                    </div>
+                    <div class="row">
+                        <img [src]="imgData" height="250px" width="250px" alt="Defect Image">
+                    </div><br>
+                    <!-- Add Comments -->
+                    <div class="row">
+                        <h6 class="font-weight-bold"><label for="status">ADD COMMENTS</label></h6>
+                        <form class="form mt-2 ml-0" #addComments="ngForm" (ngSubmit)="post_comments(comments,modalData)">
+                            <div class="mb-2 ml-0 form-group font-weight-bold">
+                                <div>
+                                <textarea rows="4" cols="30" class="form-control" name="add_comment" id="validationDefault01" [(ngModel)]="comments" placeholder="Add Comment" required></textarea>
+                                </div>
+                            </div>
+                            <div>
+                                <button type="submit" class="btn float-right btn-primary mb-2">Add Comment</button>
+                            </div>
+                            
+                        </form>
+                    </div>
+                    
+
+                    <!-- Timeline------------ -->
+                    
+                    <div class="container mt-3 mb-3">
+                        <div class="row">
+                            <h6 class="font-weight-bold"><label for="status">TIMELINE</label></h6>
+                            <div *ngIf="this.commentsList.length!=0" class="col-md-6 ">
+                                <ul *ngFor="let commentData of commentsList"  class="timeline">
+                                    <li *ngIf="this.commentData.Comments!=''">
+                                        <!-- <a target="_blank" href="https://www.totoprayogo.com/#">New Web Design</a><br/> -->
+                                        <a href="#" >{{this.commentData.Timestamp|date:'long'}}</a>
+                                        <p>{{this.commentData.Comments}}</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+
+        </tr>
+    </tbody>
+    </table>
+    
+            </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+
+
+
+
+
+                          
